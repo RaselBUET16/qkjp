@@ -131,7 +131,21 @@ public class NodeListImpl implements NodeList {
                 fillList(node);
             } else {
                 if ((mTagName == null) || node.getNodeName().equals(mTagName)) {
-                    mSearchNodes.add(node);
+                    
+					/* ********OpenRefactory Warning********
+					 Possible null pointer dereference!
+					 Path: 
+						File: SmilLayoutElementImpl.java, Line: 47
+							int childrenCount=childNodes.getLength();
+							 Information about field mSearchNodes (from class NodeListImpl) is passed through the method call. This later results into a null pointer dereference
+						File: NodeListImpl.java, Line: 65
+							fillList(mRootNode);
+							 Information about field mSearchNodes (from class NodeListImpl) is passed through the method call. This later results into a null pointer dereference
+						File: NodeListImpl.java, Line: 122
+							mSearchNodes.add(node);
+							mSearchNodes is referenced in method invocation.
+					*/
+					mSearchNodes.add(node);
                 }
             }
             node = node.getNextSibling();
