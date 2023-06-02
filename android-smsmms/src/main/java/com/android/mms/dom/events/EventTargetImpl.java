@@ -47,7 +47,7 @@ public class EventTargetImpl implements EventTarget {
     }
 
     public void addEventListener(String type, EventListener listener, boolean useCapture) {
-        if ((type == null) || type.equals("") || (listener == null)) {
+        if ((type == null) || type.isEmpty() || (listener == null)) {
             return;
         }
 
