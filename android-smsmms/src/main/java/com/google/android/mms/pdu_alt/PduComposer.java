@@ -563,7 +563,25 @@ public class PduComposer {
             case PduHeaders.PRIORITY:
             case PduHeaders.DELIVERY_REPORT:
             case PduHeaders.READ_REPORT:
-                int octet = mPduHeader.getOctet(field);
+			/* ********OpenRefactory Warning********
+			 Possible null pointer dereference!
+			 Path: 
+				File: ReadRecTransaction.java, Line: 83
+					byte[] postingData=new PduComposer(mContext,readRecInd).make();
+					 Information about field mPduHeader (from class PduComposer) is passed through the method call. This later results into a null pointer dereference
+				File: PduComposer.java, Line: 167
+					makeAckInd()
+					 Information about field mPduHeader (from class PduComposer) is passed through the method call. This later results into a null pointer dereference
+					The expression is enclosed inside an If statement.
+				File: PduComposer.java, Line: 741
+					appendHeader(PduHeaders.TRANSACTION_ID)
+					 Information about field mPduHeader (from class PduComposer) is passed through the method call. This later results into a null pointer dereference
+					The expression is enclosed inside an If statement.
+				File: PduComposer.java, Line: 566
+					int octet=mPduHeader.getOctet(field);
+					mPduHeader is referenced in method invocation.
+			*/
+			int octet = mPduHeader.getOctet(field);
                 if (0 == octet) {
                     return PDU_COMPOSE_FIELD_NOT_SET;
                 }
