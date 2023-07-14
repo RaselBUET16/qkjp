@@ -966,7 +966,7 @@ public class PduPersister {
         String path = null;
         if (null != uri) {
             String scheme = uri.getScheme();
-            if (null == scheme || scheme.equals("") ||
+            if (null == scheme || scheme.isEmpty() ||
                     scheme.equals(ContentResolver.SCHEME_FILE)) {
                 path = uri.getPath();
 
